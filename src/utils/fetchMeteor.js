@@ -9,21 +9,22 @@ const BASE_URL = "https://data.nasa.gov/resource/gh4g-9sfh.json";
  */
 export const nasaFetchFunction = (year) => {
   console.log(year, "<year>");
-  const startOfYear = `${year}-01-01T00:00:00.000`;
-  const endOfYear = `${year}-12-31T23:59:59.999`;
+  // const startOfYear = `${year}-01-01T00:00:00.000`;
+  // const endOfYear = `${year}-12-31T23:59:59.999`;
 
   return axios
     .get(BASE_URL, {
       params: {
-        $where: `year >= '${startOfYear}' AND year <= '${endOfYear}'`,
+        // $where: `year >= '${startOfYear}' AND year <= '${endOfYear}'`,
+        $where: `year = '${year}'`,
       },
     })
     .then((response) => {
-      console.log(response.data, "<response data>");
+      console.log(response.data, "<-response data");
       return response.data;
     })
     .catch((error) => {
-      console.error(error, "<error>");
+      console.error(error, "<-error");
       throw error;
     });
 };
